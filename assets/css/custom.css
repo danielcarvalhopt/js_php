@@ -34,3 +34,9 @@ body {
 .form-signin input[type="password"] {
   margin-bottom: 10px;
 }
+
+
+.insere input{
+  margin: 10px 0px 0px 0px;
+  width: 50%;
+}

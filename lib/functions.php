@@ -22,6 +22,7 @@ class Dashboard {
 
   public function connect() {
     $conn = new mysqli($this->hostname,$this->username,$this->password,$this->dbname) or die("Falhou a conexão à base de dados!");
+    mysql_query("set names 'utf8'");
     if ($conn->connect_errno) {
       printf("Connect failed: %s\n", $mysqli->connect_error);
     }
@@ -119,22 +120,167 @@ class Dashboard {
   }
 
 
+  public function insereDemo($conn){
+    if(isset($_POST['nome'])){
+      $agente = isset($_POST['agente'])?$_POST['agente']:"";
+      $numero = isset($_POST['numero'])?$_POST['numero']:"";
+      $data1 = isset($_POST['data1'])?$_POST['data1']:"";
+      $dia1 = isset($_POST['dia1'])?$_POST['dia1']:"";
+      $hora1 = isset($_POST['hora1'])?$_POST['hora1']:"";
+      $nome = isset($_POST['nome'])?$_POST['nome']:"";
+      $profissao = isset($_POST['profissao'])?$_POST['profissao']:"";
+      $datanascimento = isset($_POST['datanascimento'])?$_POST['datanascimento']:"";
+      $nome2 = isset($_POST['nome2'])?$_POST['nome2']:"";
+      $profissao2 = isset($_POST['profissao2'])?$_POST['profissao2']:"";
+      $dnasc2 = isset($_POST['dnasc2'])?$_POST['dnasc2']:"";
+      $estcivil = isset($_POST['estcivil'])?$_POST['estcivil']:"";
+      $telemovel = isset($_POST['telemovel'])?$_POST['telemovel']:"";
+      $outTelef = isset($_POST['outTelef'])?$_POST['outtelef']:"";
+      $morada = isset($_POST['morada'])?$_POST['morada']:"";
+      $codpostal = isset($_POST['codpostal'])?$_POST['codpostal']:"";
+      $localidade = isset($_POST['localidade'])?$_POST['localidade']:"";
+      $email = isset($_POST['email'])?$_POST['email']:"";
+      $observacao = isset($_POST['observacao'])?$_POST['observacao']:"";
+      $demoorigem = isset($_POST['demoorigem'])?$_POST['demoorigem']:"";
+      $sugestao = isset($_POST['sugestao'])?$_POST['sugestao']:"";
+      $sugestaoTipo = isset($_POST['sugestaoTipo'])?$_POST['sugestaoTipo']:"";
+
+      $query = "Insert into clientes (user_id, Agente, Numero, Data1, Dia1,
+                Hora1, Nome, Profissao, Dnasc, Nome2, Profissao2, Dnasc2, EstCivil,
+                Telemovel, OutTelef, Morada, CodPostal, Localidade, Email, Observacao,
+                TipoArquivo, DemoOrigem, Sugestao, SugestaoTipo) values (".$_SESSION["id"].",'$agente','$numero',
+                '$data1','$dia1','$hora1','$nome','$profissao','$datanascimento','$nome2','$profissao2','$dnasc2',
+                '$estcivil','$telemovel','$outTelef','$morada','$codpostal','$localidade','$email','$observacao',
+                'D','$demoorigem','$sugestao','$sugestaoTipo')";
+      $conn->query($query);
+    }
+    if(isset($_POST))unset($_POST);
+  }
+
+
+  public function insereVisita($conn){
+    if(isset($_POST['nome'])){
+      $agente = isset($_POST['agente'])?$_POST['agente']:"";
+      $numero = isset($_POST['numero'])?$_POST['numero']:"";
+      $data1 = isset($_POST['data1'])?$_POST['data1']:"";
+      $dia1 = isset($_POST['dia1'])?$_POST['dia1']:"";
+      $hora1 = isset($_POST['hora1'])?$_POST['hora1']:"";
+      $nome = isset($_POST['nome'])?$_POST['nome']:"";
+      $profissao = isset($_POST['profissao'])?$_POST['profissao']:"";
+      $datanascimento = isset($_POST['datanascimento'])?$_POST['datanascimento']:"";
+      $nome2 = isset($_POST['nome2'])?$_POST['nome2']:"";
+      $profissao2 = isset($_POST['profissao2'])?$_POST['profissao2']:"";
+      $dnasc2 = isset($_POST['dnasc2'])?$_POST['dnasc2']:"";
+      $estcivil = isset($_POST['estcivil'])?$_POST['estcivil']:"";
+      $telemovel = isset($_POST['telemovel'])?$_POST['telemovel']:"";
+      $outTelef = isset($_POST['outTelef'])?$_POST['outTelef']:"";
+      $morada = isset($_POST['morada'])?$_POST['morada']:"";
+      $codpostal = isset($_POST['codpostal'])?$_POST['codpostal']:"";
+      $localidade = isset($_POST['localidade'])?$_POST['localidade']:"";
+      $email = isset($_POST['email'])?$_POST['email']:"";
+      $observacao = isset($_POST['observacao'])?$_POST['observacao']:"";
+      $marcadopor = isset($_POST['marcadopor'])?$_POST['marcadopor']:"";
+      $marcacaonum = isset($_POST['marcacaonum'])?$_POST['marcacaonum']:"";
+      $marcacaodata = isset($_POST['marcacaodata'])?$_POST['marcacaodata']:"";
+      $contato = isset($_POST['contato'])?$_POST['contato']:"";
+      $rb = isset($_POST['rb'])?$_POST['rb']:"";
+      $pn = isset($_POST['pn'])?$_POST['pn']:"";
+      $aqn = isset($_POST['aqn'])?$_POST['aqn']:"";
+      $atendimentoanterior = isset($_POST['atendimentoanterior'])?$_POST['atendimentoanterior']:"";
+      $adiadocancelado = isset($_POST['adiadocancelado'])?$_POST['adiadocancelado']:"";
+      $adiadocanceladopq = isset($_POST['adiadocanceladopq'])?$_POST['adiadocanceladopq']:"";
+      $servicoagente = isset($_POST['servicoagente'])?$_POST['servicoagente']:"";
+      $servicoagentenum = isset($_POST['servicoagentenum'])?$_POST['servicoagentenum']:"";
+      $acompanhamentoagente = isset($_POST['servicoagente'])?$_POST['servicoagente']:"";
+      $acompanhamentoagentenum = isset($_POST['servicoagentenum'])?$_POST['servicoagentenum']:"";
+      $premio = isset($_POST['premio'])?$_POST['premio']:"";
+
+
+      $query = "Insert into clientes (user_id, Agente, Numero, Data1, Dia1,
+                Hora1, Nome, Profissao, Dnasc, Nome2, Profissao2, Dnasc2, EstCivil,
+                Telemovel, OutTelef, Morada, CodPostal, Localidade, Email, Observacao,
+                TipoArquivo,MarcadoPor,MarcacaoNum,MarcacaoData,Contato,RB,PN,AQN,
+                AtendimentoAnterior,AdiadoCancelado,AdiadoCanceladoPQ,ServicoAgente,ServicoAgenteNum,
+                AcompanhamentoAgente,AcompanhamentoAgenteNum,Premio) values (".$_SESSION["id"].",'$agente','$numero',
+                '$data1','$dia1','$hora1','$nome','$profissao','$datanascimento','$nome2','$profissao2','$dnasc2',
+                '$estcivil','$telemovel','$outTelef','$morada','$codpostal','$localidade','$email','$observacao',
+                'V','$marcadopor','$marcacaonum','$marcacaodata','$contato','$rb','$pn','$aqn','$atendimentoanterior',
+                '$adiadocancelado','$adiadocanceladopq','$servicoagente','$servicoagentenum','$acompanhamentoagente',
+                '$acompanhamentoagentenum','$premio')";
+      $res = $conn->query($query);
+    }
+    if(isset($_POST))unset($_POST);
+  }
+
+
+
+
   public function listaClientes($conn){
-    $res = $conn->query("SELECT * FROM clients where user_id =".$_SESSION['id']);
-    for($i=0; $i<$res->num_rows; $i++){
+    if(isset($_POST['str'])){
+      switch ($_POST['search']) {
+         case 0:
+              $query = "Select * from clientes where Nome LIKE '%".$_POST['str']."%'";
+              $res = $conn->query($query);
+               break;
+         case 1:
+              $query = "Select * from clientes where CodPostal LIKE '%".$_POST['str']."%'";
+              $res = $conn->query($query);
+               break;
+         case 2:
+               $query = "Select * from clientes where Telemovel LIKE '%".$_POST['str']."%' or OutTelef LIKE '%".$_POST['str']."%'";
+               $res = $conn->query($query);
+               break;
+         case 3:
+               $query = "Select * from clientes where Email LIKE '%".$_POST['str']."%'";
+               $res = $conn->query($query);
+               break;
+      }
+    }
+    else {$res = $conn->query("SELECT * FROM clientes where user_id =".$_SESSION['id']);}
+    for($i=0; $i<($res->num_rows); $i++){
       $row = $res->fetch_array(MYSQLI_ASSOC);
       echo "<tr>
               <td>".$row["id"]."</td>
-              <td>".$row["name"]."</td>
-              <td>".$row["email"]."</td>
-              <td>".$row["mobile"]."</td>
-              <td>".$row["address"]."</td>
-              <td>".$row["postal_code"]."</td>
-              <td>".$row["town"]."</td>
+              <td>".$row["TipoArquivo"]."</td>
+              <td>".$row["Nome"]."</td>
+              <td>".$row["Email"]."</td>
+              <td>".$row["Telemovel"]."</td>
+              <td>".$row["Morada"]."</td>
+              <td>".$row["CodPostal"]."</td>
+              <td>".$row["Localidade"]."</td>
+              <td><a href='client".$row["TipoArquivo"].".php?id=".$row["id"]."'>Consultar</a></td>
             </tr>";
       unset($_POST);
     }
   }
+
+  public function listaCliente($conn){
+    $res = $conn->query("SELECT * FROM clientes where id =".$_GET['id']);
+    $row = $res->fetch_array(MYSQLI_ASSOC);
+    if($row['user_id']==$_SESSION['id']){
+      return $row;}
+    else{
+      header("location:index.php");
+      ob_end_flush();
+      exit();
+    }
+  }
+
+  public function exporta($conn){
+    $res = $conn->query("SELECT * FROM clientes where user_id =".$_SESSION['id']);
+    for($i=0; $i<($res->num_rows); $i++){
+      $row = $res->fetch_array(MYSQLI_ASSOC);
+      $str="";
+      foreach ($row as $v) {
+        $str.="'$v',";
+      }
+      $str = trim($str);
+      $str = rtrim($str, ",");
+      $str = preg_replace( "/\<br\>/", " ", $str );
+      echo $str."<br/>";
+    }
+  }
+
 
   public function get_elements_sibling_content($re, $html)
   {
@@ -195,24 +341,21 @@ class Dashboard {
 
   public function clientfile($conn){
     if(isset($_FILES['file'])){
-    if ($_FILES["file"]["error"] > 0)
-      {
-      echo "Error: " . $_FILES["file"]["error"] . "<br>";
+      if ($_FILES["file"]["error"] > 0){
+        echo "Error: " . $_FILES["file"]["error"] . "<br>";
       }
-    else
-      {
-      $html = new simple_html_dom();
-      $html->load_file($_FILES["file"]["tmp_name"]);
-      $data = $this->get_data($html);
+      else{
+        $strHtml = file_get_contents($_FILES["file"]["tmp_name"]);
 
-      $this->store_data_in_database($conn, $data);
+        $parse = new ParseHtml($strHtml);
+        $parse->Extrair_dados();
+
+        $banco = new Model_Importacao($conn);
+        $banco->inserir($parse->ObjDataClient);
 
       }
     }
   }
-
-
-
 }
 
 

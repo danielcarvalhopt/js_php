@@ -1,7 +1,10 @@
 <?php
+  require_once('lib/ParseHtml.php');
+  require_once('lib/model_importacao.php');
   include_once('lib/simple_html_dom.php');
   include_once('lib/functions.php');
   require_once('lib/config.php');
+
   $dashboard = new Dashboard(DBHOST,DBNAME,DBUSER,DBPASSWD);
   $conn= $dashboard->connect();
   $dashboard->authcheck();
@@ -18,6 +21,7 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
+    <script src="assets/js/bootstrap.js" type="text/javascript"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,48 +42,37 @@
       <input type="submit" name="submit" value="submit">
 </form>
     <h3>Inserir manualmente</h3>
-    <form role="form" method="post" action="<?php $dashboard->clientform($conn); ?>">
-      <div class="row">
-        <div class="col-xs-2">
-          <input type="text" class="form-control" name="name" placeholder="Nome">
-        </div>
-        <div class="col-xs-3">
-          <input type="text" class="form-control" name="phone" placeholder="Telemóvel">
-        </div>
-        <div class="col-xs-4">
-          <input type="email" class="form-control" name="email" placeholder="Email">
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-xs-4">
-          <input type="text" class="form-control" name="address" placeholder="Morada">
-        </div>
-        <div class="col-xs-2">
-          <input type="text" class="form-control" name="postal" placeholder="Código Postal">
-        </div>
-        <div class="col-xs-3">
-          <input type="text" class="form-control" name="town" placeholder="Localidade">
-        </div>
-      </div>
-      <hr>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    <a href="insereVisita.php"> [ Inserir Visita ]</a>
+    <a href="insereDemo.php"> [ Inserir Demo ]</a>
+    <a href="export.php"> [ Exportar CSV ]</a>
+
     <hr>
     <h3>Lista CLientes</h3>
 
-    <table class="table table-striped">
+    <form method="post">
+      <input type="text" name="str">
+      <select name="search">
+        <option value="0">Nome</option>
+        <option value="1">Código Postal</option>
+        <option value="2">Telemóvel</option>
+        <option value="3">Email</option>
+      </select>
+      <button type="submit" name="submit" value="submit">Procurar</button>
+    </form>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
       <tr>
         <th>ID</th>
+        <th>Tipo</th>
         <th>Nome</th>
         <th>Email</th>
         <th>Telemóvel</th>
         <th>Morada</th>
         <th>Cod Postal</th>
         <th>Localidade</th>
+        <th>Opções</th>
       </tr>
       <?php $dashboard->listaClientes($conn); ?>
-
     </table>
 
 
