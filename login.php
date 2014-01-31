@@ -34,6 +34,7 @@
         <input type="password" class="form-control" placeholder="Password" name="password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
+      <h3 style="text-align:center;"><a href="signup.php">Registar</a></h3>
 
 
     </div>
