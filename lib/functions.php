@@ -219,19 +219,19 @@ class Dashboard {
     if(isset($_POST['str'])){
       switch ($_POST['search']) {
          case 0:
-              $query = "Select * from clientes where Nome LIKE '%".$_POST['str']."%'";
+              $query = "Select * from clientes where Nome LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
               $res = $conn->query($query);
                break;
          case 1:
-              $query = "Select * from clientes where CodPostal LIKE '%".$_POST['str']."%'";
+              $query = "Select * from clientes where CodPostal LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
               $res = $conn->query($query);
                break;
          case 2:
-               $query = "Select * from clientes where Telemovel LIKE '%".$_POST['str']."%' or OutTelef LIKE '%".$_POST['str']."%'";
+               $query = "Select * from clientes where Telemovel LIKE '%".$_POST['str']."%' or OutTelef LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
                $res = $conn->query($query);
                break;
          case 3:
-               $query = "Select * from clientes where Email LIKE '%".$_POST['str']."%'";
+               $query = "Select * from clientes where Email LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
                $res = $conn->query($query);
                break;
       }
