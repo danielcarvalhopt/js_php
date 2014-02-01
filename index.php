@@ -57,7 +57,15 @@
         <option value="2">Telemóvel</option>
         <option value="3">Email</option>
       </select>
+      Filtar por:
+      <select name="filtro">
+        <option value="0">Todos</option>
+        <option value="1">Visita</option>
+        <option value="2">Demonstração</option>
+      </select>
       <button type="submit" name="submit" value="submit">Procurar</button>
+      <button type="submit" name="limpar" value="submit">Limpar pesquisa</button>
+      <?php if(isset($_POST['limpar'])){unset($_POST['str']);} ?>
     </form>
 
     <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">

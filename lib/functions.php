@@ -217,21 +217,24 @@ class Dashboard {
 
   public function listaClientes($conn){
     if(isset($_POST['str'])){
+      if (($_POST['filtro'])==0){$tipo = "";}
+      if (($_POST['filtro'])==1){$tipo = " and TipoArquivo='V'";}
+      if (($_POST['filtro'])==2){$tipo = " and TipoArquivo='D'";}
       switch ($_POST['search']) {
          case 0:
-              $query = "Select * from clientes where Nome LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
+              $query = "Select * from clientes where Nome LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'].$tipo;
               $res = $conn->query($query);
                break;
          case 1:
-              $query = "Select * from clientes where CodPostal LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
+              $query = "Select * from clientes where CodPostal LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'].$tipo;
               $res = $conn->query($query);
                break;
          case 2:
-               $query = "Select * from clientes where Telemovel LIKE '%".$_POST['str']."%' or OutTelef LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
+               $query = "Select * from clientes where Telemovel LIKE '%".$_POST['str']."%' or OutTelef LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'].$tipo;
                $res = $conn->query($query);
                break;
          case 3:
-               $query = "Select * from clientes where Email LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'];
+               $query = "Select * from clientes where Email LIKE '%".$_POST['str']."%' and user_id =".$_SESSION['id'].$tipo;
                $res = $conn->query($query);
                break;
       }
